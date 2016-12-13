@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow the app to pick an image to edit it.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow the app to pick photo from camera to edit it.</string>
 </dict>
 </plist>
