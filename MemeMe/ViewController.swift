@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     // MARK: Outlets
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextFeild: UITextField!
@@ -23,14 +26,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: -5.0
     ]
+    
+    var grayStatusBar: UIView!
 
     // MARK: ViewController Life Cycle
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         topTextFeild.defaultTextAttributes = memeTextAttributes
         topTextFeild.textAlignment = .center
@@ -39,11 +42,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextFeild.defaultTextAttributes = memeTextAttributes
         bottomTextFeild.textAlignment = .center
         bottomTextFeild.delegate = self
+        
+        // Match the color of the status bar with the navigation bar
+        grayStatusBar = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
+        grayStatusBar.backgroundColor = UIColor(red: 198/255.0, green: 198/255.0, blue: 198/255.0, alpha: 1)
+        self.view.addSubview(grayStatusBar)
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        shareButton.isEnabled = imageView.image != nil
+        
         subscribeToKeyboardNotifications()
     }
     
@@ -72,6 +84,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func sharePhoto(_ sender: Any)
+    {
+        let memedImage = generateMemedImage()
+        let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+    // MARK: Save/Share Meme Images
+    
+    func generateMemedImage() -> UIImage
+    {
+        // Hide toolbar, navbar and gray status bar
+        navigationBar.isHidden = true
+        toolbar.isHidden = true
+        grayStatusBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // Show toolbar, navbar and gray status bar
+        navigationBar.isHidden = false
+        toolbar.isHidden = false
+        grayStatusBar.isHidden = false
+        
+        return memedImage
+    }
+    
+     // TODO: To be used in MemeMe 2.0
+//    func save()
+//    {
+//        // Create the meme
+//        let meme = Meme(topText: topTextFeild.text!, bottomText: bottomTextFeild.text!, originalImage: imageView.image!, memedImageImage: generateMemedImage())
+//    }
+    
     // MARK: Keyboard Notifications
     
     func subscribeToKeyboardNotifications()
@@ -93,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillHide(_ notification: Notification)
     {
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        self.view.frame.origin.y = 0.0
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat
