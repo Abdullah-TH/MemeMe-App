@@ -144,7 +144,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(_ notification: Notification)
     {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        // Sliding the view up only when the bottom text field is tapped, and also when "self.view.frame.origin.y == 0" to prevent sliding the view up again
+        // when the user tap the bottom text filed multible time.
+        if bottomTextFeild.isFirstResponder && self.view.frame.origin.y == 0
+        {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(_ notification: Notification)
