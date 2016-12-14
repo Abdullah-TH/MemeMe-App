@@ -91,6 +91,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(activityVC, animated: true, completion: nil)
     }
     
+    @IBAction func cancel(_ sender: Any)
+    {
+        imageView.image = nil
+        topTextFeild.text = "TOP"
+        bottomTextFeild.text = "BOTTOM"
+    }
+    
     // MARK: Save/Share Meme Images
     
     func generateMemedImage() -> UIImage
