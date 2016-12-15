@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Abdullah Althobetey on 12/12/16.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     // MARK: Outlets
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
@@ -27,7 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSStrokeWidthAttributeName: -5.0
     ]
     
-    var grayStatusBar: UIView!
+    var navBar: UINavigationBar!
 
     // MARK: ViewController Life Cycle
     
@@ -35,18 +34,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     {
         super.viewDidLoad()
         
-        topTextFeild.defaultTextAttributes = memeTextAttributes
-        topTextFeild.textAlignment = .center
-        topTextFeild.delegate = self
+        navBar = self.navigationController?.navigationBar
         
-        bottomTextFeild.defaultTextAttributes = memeTextAttributes
-        bottomTextFeild.textAlignment = .center
-        bottomTextFeild.delegate = self
-        
-        // Match the color of the status bar with the navigation bar
-        grayStatusBar = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.size.width, height: 20.0))
-        grayStatusBar.backgroundColor = UIColor(red: 198/255.0, green: 198/255.0, blue: 198/255.0, alpha: 1)
-        self.view.addSubview(grayStatusBar)
+        configureTextField(textField: topTextFeild)
+        configureTextField(textField: bottomTextFeild)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -54,7 +45,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = imageView.image != nil
+        enableOrDisableShareButton()
         
         subscribeToKeyboardNotifications()
     }
@@ -65,29 +56,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeToKeyboardNotifications()
     }
     
-    
     // MARK: Actions
     
     @IBAction func pickPhoto(_ sender: Any)
     {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePicker(withSourceType: .photoLibrary)
     }
     
     @IBAction func pickPhotoFromCamera(_ sender: Any)
     {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePicker(withSourceType: .camera)
     }
     
     @IBAction func sharePhoto(_ sender: Any)
     {
         let memedImage = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        
+        activityVC.completionWithItemsHandler = { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
+            
+            if completed
+            {
+                self.save()
+            }
+            
+        }
+        
         present(activityVC, animated: true, completion: nil)
     }
     
@@ -96,16 +90,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = nil
         topTextFeild.text = "TOP"
         bottomTextFeild.text = "BOTTOM"
+        enableOrDisableShareButton()
     }
     
-    // MARK: Save/Share Meme Images
+    // MARK: Helper Methods
     
-    func generateMemedImage() -> UIImage
+    private func configureTextField(textField: UITextField)
     {
-        // Hide toolbar, navbar and gray status bar
-        navigationBar.isHidden = true
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = self
+    }
+    
+    private func enableOrDisableShareButton()
+    {
+        shareButton.isEnabled = imageView.image != nil
+    }
+    
+    private func presentImagePicker(withSourceType sourceType: UIImagePickerControllerSourceType)
+    {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func generateMemedImage() -> UIImage
+    {
+        // Hide toolbar and navbar
+        navBar.isHidden = true
         toolbar.isHidden = true
-        grayStatusBar.isHidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -113,20 +127,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // Show toolbar, navbar and gray status bar
-        navigationBar.isHidden = false
+        // Show toolbar and navbar
+        navBar.isHidden = false
         toolbar.isHidden = false
-        grayStatusBar.isHidden = false
         
         return memedImage
     }
     
-     // TODO: To be used in MemeMe 2.0
-//    func save()
-//    {
-//        // Create the meme
-//        let meme = Meme(topText: topTextFeild.text!, bottomText: bottomTextFeild.text!, originalImage: imageView.image!, memedImageImage: generateMemedImage())
-//    }
+    private func save()
+    {
+        // Create the meme
+        let meme = Meme(topText: topTextFeild.text!, bottomText: bottomTextFeild.text!, originalImage: imageView.image!, memedImageImage: generateMemedImage())
+    }
     
     // MARK: Keyboard Notifications
     
@@ -198,7 +210,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
-        return true;
+        return true
     }
 }
 

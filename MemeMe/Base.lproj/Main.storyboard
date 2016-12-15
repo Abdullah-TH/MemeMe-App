@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fex-dN-DPc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -49,23 +49,6 @@
                                 <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVH-rt-UvP">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem id="2jN-kn-imB">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Oga-yt-zhm">
-                                            <connections>
-                                                <action selector="sharePhoto:" destination="BYZ-38-t0r" id="6GY-Wo-yi1"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="PH7-SE-UuY">
-                                            <connections>
-                                                <action selector="cancel:" destination="BYZ-38-t0r" id="Cvi-1D-kpk"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PMx-ZA-3cQ">
                                 <rect key="frame" x="16" y="104" width="343" height="47"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -73,40 +56,66 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="PMx-ZA-3cQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="3K4-Gs-emd"/>
                             <constraint firstAttribute="trailing" secondItem="VV9-z4-QcA" secondAttribute="trailing" id="6ob-12-7pR"/>
-                            <constraint firstItem="VV9-z4-QcA" firstAttribute="top" secondItem="HVH-rt-UvP" secondAttribute="bottom" id="AYQ-Pz-t9q"/>
                             <constraint firstItem="zeb-1Q-0bk" firstAttribute="top" secondItem="8Wx-Ke-XVM" secondAttribute="bottom" constant="40" id="Bhn-kK-VCz"/>
                             <constraint firstAttribute="trailing" secondItem="zeb-1Q-0bk" secondAttribute="trailing" id="CTy-CY-a4c"/>
                             <constraint firstItem="zeb-1Q-0bk" firstAttribute="top" secondItem="VV9-z4-QcA" secondAttribute="bottom" id="Gac-ON-6qe"/>
                             <constraint firstItem="8Wx-Ke-XVM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Izw-hE-tDi"/>
-                            <constraint firstItem="HVH-rt-UvP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MBH-fY-meV"/>
                             <constraint firstItem="zeb-1Q-0bk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ww5-Jn-UQp"/>
-                            <constraint firstItem="HVH-rt-UvP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZI1-Au-Jfe"/>
-                            <constraint firstAttribute="trailing" secondItem="HVH-rt-UvP" secondAttribute="trailing" id="dKT-a4-atQ"/>
                             <constraint firstItem="8Wx-Ke-XVM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="jKG-kj-0W4"/>
                             <constraint firstItem="PMx-ZA-3cQ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="mG5-BF-XfJ"/>
                             <constraint firstItem="PMx-ZA-3cQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="nXd-Jx-geF"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zeb-1Q-0bk" secondAttribute="bottom" id="oSP-Fh-klP"/>
+                            <constraint firstItem="VV9-z4-QcA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pzd-Zy-EhQ"/>
                             <constraint firstItem="VV9-z4-QcA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="y19-bE-roo"/>
-                            <constraint firstItem="PMx-ZA-3cQ" firstAttribute="top" secondItem="HVH-rt-UvP" secondAttribute="bottom" constant="40" id="zLu-ju-Lbz"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="4P8-9O-VMV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="g2l-Ac-Jxg">
+                            <connections>
+                                <action selector="sharePhoto:" destination="BYZ-38-t0r" id="ewh-Ld-7an"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="N8y-no-UUN">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="oF3-E2-UtV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="bottomTextFeild" destination="8Wx-Ke-XVM" id="Jdd-hI-MwT"/>
                         <outlet property="cameraButton" destination="gtg-8T-FIC" id="mfw-Am-Jzk"/>
                         <outlet property="imageView" destination="VV9-z4-QcA" id="3DZ-zo-1gU"/>
-                        <outlet property="navigationBar" destination="HVH-rt-UvP" id="T6f-wW-j9D"/>
-                        <outlet property="shareButton" destination="Oga-yt-zhm" id="tHV-hA-Gt4"/>
+                        <outlet property="shareButton" destination="g2l-Ac-Jxg" id="sa9-8q-MIu"/>
                         <outlet property="toolbar" destination="zeb-1Q-0bk" id="1v5-TM-qPX"/>
                         <outlet property="topTextFeild" destination="PMx-ZA-3cQ" id="0F1-eU-9Ds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="234"/>
+            <point key="canvasLocation" x="1207" y="233"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SI5-0Y-1ER">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fex-dN-DPc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H9W-ty-T4c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Npb-ln-VxZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRI-zn-u6y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="353" y="233"/>
         </scene>
     </scenes>
 </document>
