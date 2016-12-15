@@ -58,9 +58,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="PMx-ZA-3cQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="3K4-Gs-emd"/>
+                            <constraint firstItem="PMx-ZA-3cQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="3K4-Gs-emd">
+                                <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="VV9-z4-QcA" secondAttribute="trailing" id="6ob-12-7pR"/>
-                            <constraint firstItem="zeb-1Q-0bk" firstAttribute="top" secondItem="8Wx-Ke-XVM" secondAttribute="bottom" constant="40" id="Bhn-kK-VCz"/>
+                            <constraint firstItem="zeb-1Q-0bk" firstAttribute="top" secondItem="8Wx-Ke-XVM" secondAttribute="bottom" constant="40" id="Bhn-kK-VCz">
+                                <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="zeb-1Q-0bk" secondAttribute="trailing" id="CTy-CY-a4c"/>
                             <constraint firstItem="zeb-1Q-0bk" firstAttribute="top" secondItem="VV9-z4-QcA" secondAttribute="bottom" id="Gac-ON-6qe"/>
                             <constraint firstItem="8Wx-Ke-XVM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Izw-hE-tDi"/>

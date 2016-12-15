@@ -38,6 +38,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         configureTextField(textField: topTextFeild)
         configureTextField(textField: bottomTextFeild)
+        
+        print(navBar.frame.origin.y)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -160,13 +162,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // when the user tap the bottom text filed multible time.
         if bottomTextFeild.isFirstResponder && self.view.frame.origin.y == 0
         {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            navBar.isHidden = true
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(_ notification: Notification)
     {
-        self.view.frame.origin.y = 0.0
+        navBar.isHidden = false
+        view.frame.origin.y = 0.0
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat
@@ -191,19 +195,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        if textField === topTextFeild
+        if textField.text == "TOP" || textField.text == "BOTTOM"
         {
-            if textField.text == "TOP"
-            {
-                textField.text = ""
-            }
-        }
-        else if textField === bottomTextFeild
-        {
-            if textField.text == "BOTTOM"
-            {
-                textField.text = ""
-            }
+            textField.text = ""
         }
     }
     
