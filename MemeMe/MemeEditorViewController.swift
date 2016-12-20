@@ -38,8 +38,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         configureTextField(textField: topTextFeild)
         configureTextField(textField: bottomTextFeild)
-        
-        print(navBar.frame.origin.y)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -89,10 +87,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func cancel(_ sender: Any)
     {
-        imageView.image = nil
-        topTextFeild.text = "TOP"
-        bottomTextFeild.text = "BOTTOM"
-        enableOrDisableShareButton()
+        dismiss(animated: true, completion: nil)
+//        imageView.image = nil
+//        topTextFeild.text = "TOP"
+//        bottomTextFeild.text = "BOTTOM"
+//        enableOrDisableShareButton()
     }
     
     // MARK: Helper Methods
