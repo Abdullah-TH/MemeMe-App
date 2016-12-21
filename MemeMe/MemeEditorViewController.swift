@@ -88,10 +88,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func cancel(_ sender: Any)
     {
         dismiss(animated: true, completion: nil)
-//        imageView.image = nil
-//        topTextFeild.text = "TOP"
-//        bottomTextFeild.text = "BOTTOM"
-//        enableOrDisableShareButton()
     }
     
     // MARK: Helper Methods
