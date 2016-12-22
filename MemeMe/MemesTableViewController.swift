@@ -19,6 +19,8 @@ class MemesTableViewController: UITableViewController
         NSStrokeWidthAttributeName: -4.0
     ]
     
+    // MARK: - View Controller life cycle
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -26,6 +28,19 @@ class MemesTableViewController: UITableViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         tableView.reloadData()
+    }
+    
+    // MARK: - Navigation 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "MemesTableToDetail"
+        {
+            let memeDetailVC = segue.destination as! MemeDetailViewController
+            let indexPath = sender as! IndexPath
+            memeDetailVC.memedImage = memes[indexPath.row].memedImageImage
+            memeDetailVC.hidesBottomBarWhenPushed = true
+        }
     }
 
     // MARK: - Table view data source
@@ -53,7 +68,7 @@ class MemesTableViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
+        performSegue(withIdentifier: "MemesTableToDetail", sender: indexPath)
     }
  
 

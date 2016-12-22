@@ -22,6 +22,8 @@ class MemesCollectionViewController: UICollectionViewController
         NSStrokeWidthAttributeName: -4.0
     ]
     
+    // MARK: - View Controller life cycle 
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -41,6 +43,19 @@ class MemesCollectionViewController: UICollectionViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         collectionView?.reloadData()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "MemesCollectionToDetail"
+        {
+            let memeDetailVC = segue.destination as! MemeDetailViewController
+            let indexPath = sender as! IndexPath
+            memeDetailVC.memedImage = memes[indexPath.row].memedImageImage
+            memeDetailVC.hidesBottomBarWhenPushed = true
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -67,7 +82,7 @@ class MemesCollectionViewController: UICollectionViewController
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        performSegue(withIdentifier: "MemesCollectionToDetail", sender: indexPath)
     }
 
 }
