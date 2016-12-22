@@ -18,11 +18,6 @@ class MemesTableViewController: UITableViewController
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 14)!,
         NSStrokeWidthAttributeName: -4.0
     ]
-
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -52,6 +47,13 @@ class MemesTableViewController: UITableViewController
         cell.bottomLabel.attributedText = NSAttributedString(string: meme.bottomText, attributes: memeCellTextAttributes)
 
         return cell
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
     }
  
 
