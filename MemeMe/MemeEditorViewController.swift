@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol MemeEditorVCDelegate
+{
+    func memeEditorDidEndEditing()
+}
+
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate
 {
     // MARK: Outlets
@@ -26,6 +31,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName: -5.0
     ]
     var navBar: UINavigationBar!
+    var delegate: MemeEditorVCDelegate?
     var topText: String?
     var bottomText: String?
     var memeImage: UIImage?
@@ -97,6 +103,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             if completed
             {
                 self.save()
+                if let delegate = self.delegate
+                {
+                    delegate.memeEditorDidEndEditing()
+                }
+                else
+                {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
             
         }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeDetailViewController: UIViewController
+class MemeDetailViewController: UIViewController, MemeEditorVCDelegate
 {
     @IBOutlet weak var memeImageView: UIImageView!
     
@@ -33,7 +33,14 @@ class MemeDetailViewController: UIViewController
             memeEditorVC.topText = meme.topText
             memeEditorVC.bottomText = meme.bottomText
             memeEditorVC.memeImage = meme.originalImage
+            memeEditorVC.delegate = self
         }
+    }
+    
+    func memeEditorDidEndEditing()
+    {
+        dismiss(animated: true, completion: nil)
+        _ = navigationController?.popToRootViewController(animated: false)
     }
 }
 
