@@ -30,12 +30,14 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hRL-Z7-cFE"/>
                                     <barButtonItem title="Album" id="P4L-sY-Qma">
+                                        <color key="tintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="pickPhoto:" destination="BYZ-38-t0r" id="UDX-Jg-93F"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="w72-A1-f7w"/>
                                     <barButtonItem systemItem="camera" id="gtg-8T-FIC">
+                                        <color key="tintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="pickPhotoFromCamera:" destination="BYZ-38-t0r" id="2Ru-U8-t6j"/>
                                         </connections>
@@ -79,11 +81,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="4P8-9O-VMV">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="g2l-Ac-Jxg">
+                            <color key="tintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sharePhoto:" destination="BYZ-38-t0r" id="ewh-Ld-7an"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="N8y-no-UUN">
+                            <color key="tintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="BYZ-38-t0r" id="oF3-E2-UtV"/>
                             </connections>
@@ -111,6 +115,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="505-Kg-jV9" kind="relationship" relationship="viewControllers" id="8GS-Sa-pLv"/>
@@ -126,9 +131,14 @@
             <objects>
                 <navigationController id="505-Kg-jV9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Table" image="table" id="5nc-0s-erP"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="IEf-T3-ePM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="IEf-T3-ePM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="cBs-tV-nyd" kind="relationship" relationship="rootViewController" id="afR-vM-UId"/>
@@ -210,6 +220,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="Rxi-ta-mGa">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dgv-nI-QC9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="fex-dN-DPc" kind="presentation" id="2yO-Dg-iwB"/>
                             </connections>
@@ -228,9 +239,14 @@
             <objects>
                 <navigationController id="eC3-OO-DSU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Grid" image="collection" id="mNA-2K-TtJ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="myz-IO-17B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="myz-IO-17B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.56382921009999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="s3e-8t-1oz" kind="relationship" relationship="rootViewController" id="Gph-4w-ciz"/>
@@ -305,6 +321,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="JwH-LF-wKX">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="euP-jV-dzl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="fex-dN-DPc" kind="presentation" id="ymp-GK-eKo"/>
                             </connections>
@@ -363,6 +380,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Meme" id="R24-Oa-8J0">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Nao-Wd-tgZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="editMeme:" destination="xiB-gi-ecA" id="ac8-YJ-nYg"/>
                                 <segue destination="fex-dN-DPc" kind="presentation" identifier="MemeDetailToMemeEditor" id="NAU-Fr-k6U"/>

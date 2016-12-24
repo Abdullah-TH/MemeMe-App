@@ -11,6 +11,7 @@ import UIKit
 class MemesTableViewController: UITableViewController
 {
     var memes: [Meme]!
+    var noMemesImageView = UIImageView()
     
     let memeCellTextAttributes: [String: Any] = [
         NSStrokeColorAttributeName: UIColor.black,
@@ -28,6 +29,29 @@ class MemesTableViewController: UITableViewController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
         tableView.reloadData()
+        toggleNoMemesView()
+    }
+    
+    // MARK: - Helper methods 
+    
+    private func toggleNoMemesView()
+    {
+        if memes.count == 0
+        {
+            noMemesImageView.image = UIImage(named: "no_memes")
+            noMemesImageView.contentMode = .scaleAspectFill
+            noMemesImageView.translatesAutoresizingMaskIntoConstraints = false
+            self.navigationController?.view.insertSubview(noMemesImageView, belowSubview: (self.navigationController?.navigationBar)!)
+            let topConstraint = NSLayoutConstraint(item: noMemesImageView, attribute: .top, relatedBy: .equal, toItem: self.navigationController?.view, attribute: .top, multiplier: 1, constant: 0)
+            let bottomConstaint = NSLayoutConstraint(item: noMemesImageView, attribute: .bottom, relatedBy: .equal, toItem: self.navigationController?.view, attribute: .bottom, multiplier: 1, constant: 0)
+            let leadingConstraint = NSLayoutConstraint(item: noMemesImageView, attribute: .leading, relatedBy: .equal, toItem: self.navigationController?.view, attribute: .leading, multiplier: 1, constant: 0)
+            let trailingConstaint = NSLayoutConstraint(item: noMemesImageView, attribute: .trailing, relatedBy: .equal, toItem: self.navigationController?.view, attribute: .trailing, multiplier: 1, constant: 0)
+            navigationController?.view.addConstraints([topConstraint, bottomConstaint, leadingConstraint, trailingConstaint])
+        }
+        else
+        {
+            noMemesImageView.removeFromSuperview()
+        }
     }
     
     // MARK: - Navigation 
