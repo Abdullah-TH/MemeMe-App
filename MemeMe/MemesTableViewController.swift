@@ -23,6 +23,13 @@ class MemesTableViewController: UITableViewController
     
     // MARK: - View Controller life cycle
     
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -30,6 +37,7 @@ class MemesTableViewController: UITableViewController
         memes = appDelegate.memes
         tableView.reloadData()
         toggleNoMemesView()
+        self.editButtonItem.isEnabled = memes.count > 0
     }
     
     // MARK: - Helper methods 
@@ -108,6 +116,12 @@ class MemesTableViewController: UITableViewController
             appDelegate.memes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             toggleNoMemesView()
+        }
+        
+        if memes.count == 0
+        {
+            self.setEditing(false, animated: true)
+            self.editButtonItem.isEnabled = false
         }
     }
  
