@@ -38,7 +38,7 @@ class MemesTableViewController: UITableViewController
         {
             let memeDetailVC = segue.destination as! MemeDetailViewController
             let indexPath = sender as! IndexPath
-            memeDetailVC.memedImage = memes[indexPath.row].memedImageImage
+            memeDetailVC.meme = memes[indexPath.row]
             memeDetailVC.hidesBottomBarWhenPushed = true
         }
     }

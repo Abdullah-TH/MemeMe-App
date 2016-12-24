@@ -12,23 +12,28 @@ class MemeDetailViewController: UIViewController
 {
     @IBOutlet weak var memeImageView: UIImageView!
     
-    var memedImage: UIImage!
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        
-    }
+    var meme: Meme!
     
     override func viewWillAppear(_ animated: Bool)
     {
-        memeImageView.image = memedImage
+        memeImageView.image = meme.memedImageImage
     }
 
     @IBAction func editMeme(_ sender: Any)
     {
-        
+        performSegue(withIdentifier: "MemeDetailToMemeEditor", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "MemeDetailToMemeEditor"
+        {
+            let navController = segue.destination as! UINavigationController
+            let memeEditorVC = navController.topViewController as! MemeEditorViewController
+            memeEditorVC.topText = meme.topText
+            memeEditorVC.bottomText = meme.bottomText
+            memeEditorVC.memeImage = meme.originalImage
+        }
     }
 }
 

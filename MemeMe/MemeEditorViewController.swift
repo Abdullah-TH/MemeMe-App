@@ -25,8 +25,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: -5.0
     ]
-    
     var navBar: UINavigationBar!
+    var topText: String?
+    var bottomText: String?
+    var memeImage: UIImage?
 
     // MARK: ViewController Life Cycle
     
@@ -34,10 +36,28 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     {
         super.viewDidLoad()
         
+        view.translatesAutoresizingMaskIntoConstraints = true
+        
         navBar = self.navigationController?.navigationBar
         
         configureTextField(textField: topTextFeild)
         configureTextField(textField: bottomTextFeild)
+        
+        if let topText = topText
+        {
+            topTextFeild.text = topText
+        }
+        
+        if let bottomText = bottomText
+        {
+            bottomTextFeild.text = bottomText
+        }
+        
+        if let memeImage = memeImage
+        {
+            imageView.image = memeImage
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -46,7 +66,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         enableOrDisableShareButton()
-        
         subscribeToKeyboardNotifications()
     }
     
