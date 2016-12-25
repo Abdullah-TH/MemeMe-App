@@ -16,6 +16,7 @@ class MemeDetailViewController: UIViewController, MemeEditorVCDelegate
     
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
         memeImageView.image = meme.memedImageImage
     }
 
